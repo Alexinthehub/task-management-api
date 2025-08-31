@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fae*-v(e*ppt^tj_=cw#yx(%os!5^n(j04++b($m)0wfg&)=9x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'tasks',
+    'django_crontab',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +128,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-    'rest_framework.authentication.TokenAuthentication',
-    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Task Management API',
+    'DESCRIPTION': 'API for managing tasks.',
+    'VERSION': '1.0.0',
+}
+    # OTHER SETTINGS
+CRONJOBS = [
+    ('0 * * * *', 'tasks.cron.check_for_due_tasks') # Runs every hour
+]
