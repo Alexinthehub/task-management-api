@@ -1,69 +1,80 @@
-# Task Management API
+Task Management API
+Project Description
+This is a robust and scalable Task Management API built with Django and Django REST Framework. The API allows users to register, authenticate, and manage their tasks. It supports full CRUD (Create, Read, Update, Delete) functionality for tasks and includes advanced features like filtering, a notification system, and interactive API documentation.
 
-### Project Description
+Features
+User Authentication: Secure user registration and token-based login.
 
-This is a robust and scalable Task Management API built with Django and Django REST Framework. The API allows users to register, authenticate, and manage their tasks. It supports full CRUD (Create, Read, Update, Delete) functionality for tasks and includes filtering capabilities.
+Task Management: Full CRUD operations for creating, retrieving, updating, and deleting tasks.
 
-### Features
+Filtering: Users can filter their task list by status and priority.
 
-- **User Authentication:** Secure user registration and token-based login.
-- **Task Management:** Full CRUD operations for creating, retrieving, updating, and deleting tasks.
-- **Filtering:** Users can filter their task list by `status` and `priority`.
-- **Private Endpoints:** All task-related endpoints are protected and require a valid authentication token.
+Automated Notifications: The system sends reminders for tasks with approaching due dates via a background cron job.
 
-### API Endpoints
+API Documentation: Interactive and auto-generated API documentation is available via Swagger UI.
 
-#### User Authentication
+Private Endpoints: All task-related endpoints are protected and require a valid authentication token.
 
-- **Register:** `POST /api/register/`
-- **Login:** `POST /api/login/`
+API Endpoints
+User Authentication
+Register: POST /api/register/
 
-#### Task Management
+Login: POST /api/login/
 
-- **List Tasks:** `GET /api/tasks/`
-- **Create Task:** `POST /api/tasks/`
-- **Retrieve Task:** `GET /api/tasks/<id>/`
-- **Update Task:** `PATCH /api/tasks/<id>/`
-- **Delete Task:** `DELETE /api/tasks/<id>/`
+Task Management
+List Tasks: GET /api/tasks/
 
-### How to Run the Project
+Create Task: POST /api/tasks/
 
-1.  Clone this repository to your local machine.
-2.  Navigate to the project directory.
-3.  Create and activate a Python virtual environment.
-4.  Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-5.  Run database migrations:
-    ```bash
-    python manage.py migrate
-    ```
-6.  Start the Django development server:
-    `bash
-    python manage.py runserver
-    `
-    The API will be available at `http://127.0.0.1:8000/`.
+Retrieve Task: GET /api/tasks/<id>/
 
----
+Update Task: PATCH /api/tasks/<id>/
 
-### How to Push the `README` File
+Delete Task: DELETE /api/tasks/<id>/
 
-After you have created the `README.md` file, you need to add it to your repository and push the changes to GitHub.
+API Documentation
+Swagger UI: GET /api/schema/swagger-ui/
 
-1.  **Stage the new file:**
+How to Run the Project
+Clone this repository to your local machine.
 
-    ```bash
-    git add README.md
-    ```
+Navigate to the project directory.
 
-2.  **Commit your changes:**
+Create and activate a Python virtual environment.
 
-    ```bash
-    git commit -m "Add README file"
-    ```
+Install the required dependencies, including the new ones for this phase:
 
-3.  **Push the changes to your remote repository:**
-    ```bash
-    git push origin main
-    ```
+Bash
+
+pip install -r requirements.txt
+Run database migrations:
+
+Bash
+
+python manage.py makemigrations
+python manage.py migrate
+Start the Django development server:
+
+Bash
+
+python manage.py runserver
+The API will be available at http://127.0.0.1:8000/.
+
+How to Push the README File
+After you have updated the README.md file, you need to add it to your repository and push the changes to GitHub.
+
+Stage the file:
+
+Bash
+
+git add README.md
+Commit your changes with a descriptive message:
+
+Bash
+
+git commit -m "Update README with Phase 4 features"
+Push the changes to your remote repository:
+
+Bash
+
+git push origin main
