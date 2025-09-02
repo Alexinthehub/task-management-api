@@ -1,62 +1,94 @@
-Task Management API
-Project Description
-This is a robust and scalable Task Management API built with Django and Django REST Framework. The API allows users to register, authenticate, and manage their tasks. It supports full CRUD (Create, Read, Update, Delete) functionality for tasks and includes advanced features like filtering, a notification system, and interactive API documentation.
+# Task Management API
 
-Features
-User Authentication: Secure user registration and token-based login.
+A Django REST Framework backend API for managing tasks with user authentication and notifications.
 
-Task Management: Full CRUD operations for creating, retrieving, updating, and deleting tasks.
+## 🚀 Current Features
 
-Filtering: Users can filter their task list by status and priority.
+- **JWT Authentication** - User registration/login with secure tokens
+- **Task CRUD Operations** - Create, read, update, and delete tasks
+- **User-specific Data** - Users can only access their own tasks
+- **Notification System** - Database model for task reminders
+- **RESTful API** - Clean JSON API endpoints
 
-Automated Notifications: The system sends reminders for tasks with approaching due dates via a background cron job.
+## 📋 API Endpoints
 
-API Documentation: Interactive and auto-generated API documentation is available via Swagger UI.
+### Authentication
 
-Private Endpoints: All task-related endpoints are protected and require a valid authentication token.
+- `POST /api/register/` - Create new user account
+- `POST /api/login/` - Login and get JWT tokens
+- `POST /api/token/refresh/` - Refresh access token
 
-API Endpoints
-User Authentication
-Register: POST /api/register/
+### Tasks (Authentication Required)
 
-Login: POST /api/login/
+- `GET /api/tasks/` - List all tasks for current user
+- `POST /api/tasks/` - Create a new task
+- `GET /api/tasks/<id>/` - Get specific task
+- `PUT /api/tasks/<id>/` - Update a task
+- `DELETE /api/tasks/<id>/` - Delete a task
 
-Task Management
-List Tasks: GET /api/tasks/
+### Notifications (Authentication Required)
 
-Create Task: POST /api/tasks/
+- `GET /api/notifications/` - List unread notifications
+- `PATCH /api/notifications/<id>/read/` - Mark notification as read
 
-Retrieve Task: GET /api/tasks/<id>/
+## 🛠️ Installation
 
-Update Task: PATCH /api/tasks/<id>/
+1. **Clone and setup**
+   ```bash
+   git clone <your-repo-url>
+   cd task_management_api
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   Database setup
+   ```
 
-Delete Task: DELETE /api/tasks/<id>/
-
-API Documentation
-Swagger UI: GET /api/schema/swagger-ui/
-
-How to Run the Project
-Clone this repository to your local machine.
-
-Navigate to the project directory.
-
-Create and activate a Python virtual environment.
-
-Install the required dependencies, including the new ones for this phase:
-
-Bash
-
-pip install -r requirements.txt
-Run database migrations:
-
-Bash
-
-python manage.py makemigrations
+bash
 python manage.py migrate
-Start the Django development server:
+python manage.py createsuperuser # Optional
+Run server
 
-Bash
-
+bash
 python manage.py runserver
-The API will be available at http://127.0.0.1:8000/.
+🔐 Authentication
+Use JWT tokens for authenticated endpoints:
 
+Register: POST /api/register/ with {username, email, password}
+
+Login: POST /api/login/ with {username, password}
+
+Use the returned access token in headers:
+
+text
+Authorization: Bearer <your-token>
+🚧 In Progress
+Celery scheduled tasks for notifications
+
+API documentation with Swagger
+
+Deployment configuration
+
+Comprehensive testing
+
+📝 License
+MIT License - see LICENSE file for details.
+
+text
+
+### **Why this approach is better right now:**
+
+1. **Accurate**: Only includes what you've actually built
+2. **Professional**: Clean and well-organized
+3. **Maintainable**: Easy to update as you progress
+4. **Useful**: Provides essential information for anyone viewing your project
+
+### **What to do:**
+
+1. **Copy this content** into your `README.md` file
+2. **Replace** `<your-repo-url>` with your actual GitHub URL
+3. **Commit and push**:
+   ```bash
+   git add README.md
+   git commit -m "docs: Add initial project README with current features"
+   git push origin main
+   ```
