@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -143,3 +144,21 @@ SPECTACULAR_SETTINGS = {
 CRONJOBS = [
     ('0 * * * *', 'tasks.cron.check_for_due_tasks') # Runs every hour
 ]
+
+# Celery Configuration
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'  # Set to your preferred timezone
+
+# Celery Beat Schedule (for periodic tasks)
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'check-upcoming-due-dates': {
+        'task': 'tasks.tasks.check_upcoming_due_dates',
+        'schedule': crontab(hour=9, minute=0),  # Runs daily at 9:00 AM
+        # For testing, you can use:
+        # 'schedule': crontab(minute='*/1'),  # Runs every minute
+    },
+}
