@@ -1,9 +1,19 @@
 # tasks/views.py
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .models import Task, Notification
-from .serializers import TaskSerializer, NotificationSerializer
+from .serializers import TaskSerializer, NotificationSerializer, UserSerializer
+
+# Authentication Views
+class RegisterView(generics.CreateAPIView):
+    """
+    API view for user registration.
+    """
+    queryset = User.objects.all()
+    permission_classes = [permissions.AllowAny]  # Allow anyone to register
+    serializer_class = UserSerializer
 
 # Task Views
 class TaskListCreateAPIView(generics.ListCreateAPIView):
