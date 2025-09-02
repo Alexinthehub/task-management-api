@@ -60,21 +60,3 @@ Bash
 python manage.py runserver
 The API will be available at http://127.0.0.1:8000/.
 
-How to Push the README File
-After you have updated the README.md file, you need to add it to your repository and push the changes to GitHub.
-
-Stage the file:
-
-Bash
-
-git add README.md
-Commit your changes with a descriptive message:
-
-Bash
-
-git commit -m "Update README with Phase 4 features"
-Push the changes to your remote repository:
-
-Bash
-
-git push origin main

@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'rest_framework',                     
+    'rest_framework_simplejwt', 
     'rest_framework.authtoken',
     'django_filters',
     'tasks',
+    'drf_yasg',
     'django_crontab',
     'drf_spectacular',
 ]
@@ -128,7 +130,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+            ),
 }
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Task Management API',
