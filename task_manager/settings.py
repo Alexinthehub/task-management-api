@@ -172,3 +172,33 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # 1 hour instead of 5 minutes
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # 1 day instead of 24 hours
 }
+# Add/check these security settings at the bottom
+# ========================
+# SECURITY SETTINGS
+# ========================
+
+# For production: Never check in actual secrets!
+SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key-here')  # Should use environment variable in production
+
+# For production: Set to False
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+
+# For production: Set proper allowed hosts
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+
+# HTTPS settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# CORS settings (if you have frontend)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React dev server
+    "http://127.0.0.1:3000",
+]
+
+# Custom user model (best practice)
+# AUTH_USER_MODEL = 'users.CustomUser'  # For future pr
