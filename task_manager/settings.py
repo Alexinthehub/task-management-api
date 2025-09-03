@@ -202,3 +202,13 @@ CORS_ALLOWED_ORIGINS = [
 
 # Custom user model (best practice)
 # AUTH_USER_MODEL = 'users.CustomUser'  # For future pr
+
+# ========================
+# PYTHONANYWHERE SETTINGS
+# ========================
+try:
+    from pythonanywhere_config import *
+    print("PythonAnywhere configuration loaded")
+except ImportError:
+    print("PythonAnywhere configuration not found - running locally")
+    pass

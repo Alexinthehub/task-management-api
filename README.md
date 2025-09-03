@@ -92,3 +92,16 @@ text
    git commit -m "docs: Add initial project README with current features"
    git push origin main
    ```
+
+## 🚀 Deployment
+
+### PythonAnywhere Deployment
+
+This project is configured for easy deployment on PythonAnywhere.
+
+1. **Create account** at [pythonanywhere.com](https://www.pythonanywhere.com/)
+2. **Follow the guide**: [PYTHONANYWHERE_DEPLOYMENT.md](PYTHONANYWHERE_DEPLOYMENT.md)
+3. **Set environment variables** in web app configuration
+4. **Upload code** and reload web app
+
+See detailed instructions in [PYTHONANYWHERE_DEPLOYMENT.md](PYTHONANYWHERE_DEPLOYMENT.md).
