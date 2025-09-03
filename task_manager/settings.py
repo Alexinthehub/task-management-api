@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -134,11 +135,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
             ),
+             'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Task Management API',
     'DESCRIPTION': 'API for managing tasks.',
     'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,  # Keeps JWT tokens working in Swagger
+    },
 }
     # OTHER SETTINGS
 CRONJOBS = [
@@ -161,4 +167,8 @@ CELERY_BEAT_SCHEDULE = {
         # For testing, you can use:
         # 'schedule': crontab(minute='*/1'),  # Runs every minute
     },
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # 1 hour instead of 5 minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # 1 day instead of 24 hours
 }
