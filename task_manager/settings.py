@@ -179,7 +179,7 @@ SIMPLE_JWT = {
 # ========================
 
 # For production: Never check in actual secrets!
-SECRET_KEY = os.environ.get('omfjnnlf0fzobzzr67ua=hr@-h1@i762@_gmys0)=6e$2b$wp#')  # Should use environment variable in production
+SECRET_KEY = os.environ.get('#@9@%kq-8m0ncpqx_*-8cm9t1rgd=139qo%1g%3!3p)*gae&22')  # Should use environment variable in production
 
 # For production: Set to False
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
