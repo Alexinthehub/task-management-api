@@ -54,12 +54,10 @@ class NotificationListView(generics.ListAPIView):
         return Notification.objects.filter(user=self.request.user, read=False).order_by('-created_at')
 
 class NotificationMarkAsReadView(generics.UpdateAPIView):
-    """
-    API view to mark a specific notification as read.
-    """
+    serializer_class = NotificationSerializer  # ← THIS MUST BE THERE
     permission_classes = [permissions.IsAuthenticated]
     queryset = Notification.objects.all()
-    http_method_names = ['patch']  # Only allow PATCH
+    http_method_names = ['patch']
 
     def patch(self, request, *args, **kwargs):
         notification = self.get_object()
