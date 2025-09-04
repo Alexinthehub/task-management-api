@@ -25,10 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fae*-v(e*ppt^tj_=cw#yx(%os!5^n(j04++b($m)0wfg&)=9x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'mwendwa.pythonanywhere.com,localhost,127.0.0.1,www.pythonanywhere.com').split(',')
 
 # Application definition
 
@@ -124,8 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -178,7 +179,7 @@ SIMPLE_JWT = {
 # ========================
 
 # For production: Never check in actual secrets!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key-here')  # Should use environment variable in production
+SECRET_KEY = os.environ.get('omfjnnlf0fzobzzr67ua=hr@-h1@i762@_gmys0)=6e$2b$wp#')  # Should use environment variable in production
 
 # For production: Set to False
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
@@ -207,7 +208,7 @@ CORS_ALLOWED_ORIGINS = [
 # PYTHONANYWHERE SETTINGS
 # ========================
 try:
-    from pythonanywhere_config import *
+    #from pythonanywhere_config import *
     print("PythonAnywhere configuration loaded")
 except ImportError:
     print("PythonAnywhere configuration not found - running locally")
