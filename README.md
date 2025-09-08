@@ -71,8 +71,6 @@ A Django REST Framework API for task management with user authentication, notifi
 - **Documentation**: http://127.0.0.1:8000/api/docs/
 - **Authentication**: http://127.0.0.1:8000/api/login/
 
-### Frontend Development
-The API accepts requests from React development server (http://localhost:3000) with CORS enabled.
 
 ## 🌐 Production Deployment
 - **Live API**: https://mwendwa.pythonanywhere.com/api/
