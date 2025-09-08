@@ -1,107 +1,161 @@
 # Task Management API
 
-A Django REST Framework backend API for managing tasks with user authentication and notifications.
+A Django REST Framework API for task management with user authentication, notifications, and full CRUD operations.
 
-## 🚀 Current Features
+## 🚀 Live Deployment
 
-- **JWT Authentication** - User registration/login with secure tokens
-- **Task CRUD Operations** - Create, read, update, and delete tasks
-- **User-specific Data** - Users can only access their own tasks
-- **Notification System** - Database model for task reminders
-- **RESTful API** - Clean JSON API endpoints
+**API Documentation:** https://mwendwa.pythonanywhere.com/api/docs/
 
-## 📋 API Endpoints
+## 📋 Features
+
+- **User Authentication** (JWT tokens)
+- **Task Management** (Full CRUD operations)
+- **Real-time Notifications**
+- **RESTful API Design**
+- **Auto-generated Documentation** (Swagger/ReDoc)
+- **Production-ready Configuration**
+
+## 🔌 API Endpoints
 
 ### Authentication
 
-- `POST /api/register/` - Create new user account
-- `POST /api/login/` - Login and get JWT tokens
-- `POST /api/token/refresh/` - Refresh access token
+- `POST /api/login/` - User login
+- `POST /api/register/` - User registration
+- `POST /api/token/refresh/` - Refresh JWT tokens
 
-### Tasks (Authentication Required)
+### Tasks
 
-- `GET /api/tasks/` - List all tasks for current user
+- `GET /api/tasks/` - List all tasks for authenticated user
 - `POST /api/tasks/` - Create a new task
-- `GET /api/tasks/<id>/` - Get specific task
-- `PUT /api/tasks/<id>/` - Update a task
-- `DELETE /api/tasks/<id>/` - Delete a task
+- `GET /api/tasks/{id}/` - Retrieve a specific task
+- `PUT /api/tasks/{id}/` - Update a task
+- `PATCH /api/tasks/{id}/` - Partial task update
+- `DELETE /api/tasks/{id}/` - Delete a task
 
-### Notifications (Authentication Required)
+### Notifications
 
 - `GET /api/notifications/` - List unread notifications
-- `PATCH /api/notifications/<id>/read/` - Mark notification as read
+- `PATCH /api/notifications/{id}/mark-read/` - Mark notification as read
 
-## 🛠️ Installation
+## 🛠️ Technology Stack
 
-1. **Clone and setup**
+- **Backend:** Django 4.2+ & Django REST Framework
+- **Authentication:** JWT (SimpleJWT)
+- **Database:** SQLite (Development) / MySQL (Production)
+- **Documentation:** DRF Spectacular (Swagger/OpenAPI)
+- **Deployment:** PythonAnywhere
+- **Python:** 3.10+
+
+## 📦 Installation
+
+1. **Clone repository**
    ```bash
    git clone <your-repo-url>
    cd task_management_api
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install -r requirements.txt
-   Database setup
+   Create virtual environment
    ```
+
+bash
+python -m venv venv
+source venv/bin/activate # Linux/Mac
+
+# or
+
+venv\Scripts\activate # Windows
+Install dependencies
+
+bash
+pip install -r requirements.txt
+Database setup
 
 bash
 python manage.py migrate
-python manage.py createsuperuser # Optional
-Run server
+Create superuser
+
+bash
+python manage.py createsuperuser
+Run development server
 
 bash
 python manage.py runserver
-🔐 Authentication
-Use JWT tokens for authenticated endpoints:
+🚀 Deployment
+This API is deployed on PythonAnywhere with:
 
-Register: POST /api/register/ with {username, email, password}
+Production settings (DEBUG=False, secure headers)
 
-Login: POST /api/login/ with {username, password}
+MySQL database configuration
 
-Use the returned access token in headers:
+Static files collected and served
+
+WSGI configuration optimized
+
+Environment Configuration
+Create pythonanywhere_config.py for production:
+
+python
+
+# Production settings for PythonAnywhere
+
+DEBUG = False
+ALLOWED_HOSTS = ['yourusername.pythonanywhere.com', 'localhost', '127.0.0.1']
+SECRET_KEY = 'your-production-secret-key'
+
+# Security settings
+
+CSRF_TRUSTED_ORIGINS = [
+'https://yourusername.pythonanywhere.com',
+'https://*.pythonanywhere.com',
+]
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+📝 API Usage Examples
+User Registration
+bash
+curl -X POST https://mwendwa.pythonanywhere.com/api/register/ \
+ -H "Content-Type: application/json" \
+ -d '{"username": "testuser", "password": "testpass123", "email": "test@example.com"}'
+User Login
+bash
+curl -X POST https://mwendwa.pythonanywhere.com/api/login/ \
+ -H "Content-Type: application/json" \
+ -d '{"username": "testuser", "password": "testpass123"}'
+Create Task (with JWT token)
+bash
+curl -X POST https://mwendwa.pythonanywhere.com/api/tasks/ \
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+ -d '{"title": "Complete API documentation", "description": "Update README and API docs", "due_date": "2023-12-31"}'
+🤝 Contributing
+Fork the repository
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit changes (git commit -m 'Add amazing feature')
+
+Push to branch (git push origin feature/amazing-feature)
+
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License - see LICENSE file for details.
+
+🆘 Support
+For support or questions:
+
+Check the API documentation: https://mwendwa.pythonanywhere.com/api/docs/
+
+Open an issue on GitHub
+
+Contact the development team
+
+Note: This API is currently deployed and operational. All endpoints are functional and tested.
+EOL
 
 text
-Authorization: Bearer <your-token>
-🚧 In Progress
-Celery scheduled tasks for notifications
 
-API documentation with Swagger
+Let me also show you the updated README:
 
-Deployment configuration
-
-Comprehensive testing
-
-📝 License
-MIT License - see LICENSE file for details.
-
-text
-
-### **Why this approach is better right now:**
-
-1. **Accurate**: Only includes what you've actually built
-2. **Professional**: Clean and well-organized
-3. **Maintainable**: Easy to update as you progress
-4. **Useful**: Provides essential information for anyone viewing your project
-
-### **What to do:**
-
-1. **Copy this content** into your `README.md` file
-2. **Replace** `<your-repo-url>` with your actual GitHub URL
-3. **Commit and push**:
-   ```bash
-   git add README.md
-   git commit -m "docs: Add initial project README with current features"
-   git push origin main
-   ```
-
-## 🚀 Deployment
-
-### PythonAnywhere Deployment
-
-This project is configured for easy deployment on PythonAnywhere.
-
-1. **Create account** at [pythonanywhere.com](https://www.pythonanywhere.com/)
-2. **Follow the guide**: [PYTHONANYWHERE_DEPLOYMENT.md](PYTHONANYWHERE_DEPLOYMENT.md)
-3. **Set environment variables** in web app configuration
-4. **Upload code** and reload web app
-
-See detailed instructions in [PYTHONANYWHERE_DEPLOYMENT.md](PYTHONANYWHERE_DEPLOYMENT.md).
+```bash
+cat README.md
+```
