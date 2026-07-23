@@ -1,6 +1,6 @@
 # TaskFlow Backend – The Engine Behind Your Task Management
 
-![TaskFlow Logo](https://via.placeholder.com/800x200/0f172a/ffffff?text=TaskFlow+Backend)
+![TaskFlow Logo](assets/logo.svg)
 
 This is the **backend API** that powers TaskFlow – a task management application designed to help individuals and teams organise their work, track progress, and collaborate seamlessly.
 
@@ -8,7 +8,7 @@ While the frontend is what you see and click, the backend is the **brain** that 
 
 ---
 
-## 📋 What This Backend Does (In Plain English)
+## 📋 What This Backend Does
 
 | What You Do in the App    | What the Backend Does                                                             |
 | ------------------------- | --------------------------------------------------------------------------------- |
