@@ -8,7 +8,7 @@ While the frontend is what you see and click, the backend is the **brain** that 
 
 ---
 
-## 📋 What This Backend Does (In Plain English)
+## 📋 What This Backend Does
 
 | What You Do in the App    | What the Backend Does                                                             |
 | ------------------------- | --------------------------------------------------------------------------------- |
@@ -42,6 +42,7 @@ Task Scheduling	Django management commands (cron / Celery optional)
 File Uploads	Pillow for image processing
 API Documentation	DRF Spectacular (OpenAPI / Swagger)
 Deployment	PythonAnywhere
+
 🗂️ Key Data Models
 Model	Purpose
 User	Stores user credentials and profile info.
