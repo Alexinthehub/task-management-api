@@ -8,7 +8,7 @@ While the frontend is what you see and click, the backend is the **brain** that 
 
 ---
 
-## 📋 What This Backend Does
+## 📋 What This Backend Does (In Plain English)
 
 | What You Do in the App    | What the Backend Does                                                             |
 | ------------------------- | --------------------------------------------------------------------------------- |
@@ -24,72 +24,84 @@ While the frontend is what you see and click, the backend is the **brain** that 
 
 ## 🧠 How It All Fits Together
 
-```mermaid
-graph LR
-    A[Frontend React App] --> B[TaskFlow Backend API]
-    B --> C[(Database)]
-    B --> D[Email Service]
-    B --> E[File Storage for Avatars]
-(Diagram placeholder – you can add a real one later using mermaid or an image.)
+![Architecture Diagram](screenshots/architecture.png)
 
-🛠️ Technology Stack
-Layer	Technology
-Framework	Django 5.2 + Django REST Framework
-Authentication	JWT (via rest_framework_simplejwt)
-Database	SQLite (development) / MySQL (production on PythonAnywhere)
-Email	SMTP (Gmail) / SendGrid
-Task Scheduling	Django management commands (cron / Celery optional)
-File Uploads	Pillow for image processing
-API Documentation	DRF Spectacular (OpenAPI / Swagger)
-Deployment	PythonAnywhere
+_Placeholder: This diagram will show how the frontend React app communicates with the Django backend, which then interacts with the database, email service, and file storage._
 
-🗂️ Key Data Models
-Model	Purpose
-User	Stores user credentials and profile info.
-Profile	Extends User with avatar, nickname.
-Task	Main task entity – title, description, due date, priority, status, lock, favourite, pin.
-Category	Labels for grouping tasks (many‑to‑many with Task).
-Notification	Unread notifications for users.
-SharedTask	Tracks shared links, their tokens, expiry, and status.
+---
 
-📬 Main API Endpoints
-Method	Endpoint	Description
-POST	/api/register/	Create a new user account.
-POST	/api/login/	Obtain JWT access and refresh tokens.
-POST	/api/token/refresh/	Refresh an expired access token.
-GET	/api/tasks/	List all tasks for the authenticated user.
-POST	/api/tasks/	Create a new task.
-GET	/api/tasks/{id}/	Retrieve a single task.
-PUT/PATCH	/api/tasks/{id}/	Update a task.
-DELETE	/api/tasks/{id}/	Delete a task.
-POST	/api/tasks/{id}/lock/	Lock a task with a password.
-POST	/api/tasks/{id}/unlock/	Unlock a task.
-POST	/api/tasks/{id}/toggle-favorite/	Toggle favourite status.
-POST	/api/tasks/{id}/toggle-pin/	Toggle pin status.
-POST	/api/tasks/{id}/duplicate/	Duplicate a task.
-GET	/api/notifications/	List unread notifications.
-PATCH	/api/notifications/{id}/mark-read/	Mark a notification as read.
-POST	/api/notifications/mark-all-read/	Mark all notifications as read.
-GET	/api/categories/	List user’s categories.
-POST	/api/categories/	Create a new category.
-POST	/api/share/	Generate a share link for a task.
-GET	/api/share/{token}/	View a shared task (public).
-GET	/api/analytics/	Get task statistics for charts.
-POST	/api/change-password/	Change user password.
-POST	/api/profile/delete-account/	Delete the user account.
-POST	/api/feedback/	Submit user feedback (with optional screenshot).
-For full interactive documentation, visit /api/docs/ (Swagger UI) when the server is running.
+## 🛠️ Technology Stack
 
-🚀 Getting Started (For Developers)
-Prerequisites
-Python 3.10+
+| Layer                 | Technology                                                  |
+| --------------------- | ----------------------------------------------------------- |
+| **Framework**         | Django 5.2 + Django REST Framework                          |
+| **Authentication**    | JWT (via `rest_framework_simplejwt`)                        |
+| **Database**          | SQLite (development) / MySQL (production on PythonAnywhere) |
+| **Email**             | SMTP (Gmail) / SendGrid                                     |
+| **Task Scheduling**   | Django management commands (cron / Celery optional)         |
+| **File Uploads**      | `Pillow` for image processing                               |
+| **API Documentation** | DRF Spectacular (OpenAPI / Swagger)                         |
+| **Deployment**        | PythonAnywhere                                              |
 
-pip
+---
 
-Virtual environment (recommended)
+## 🗂️ Key Data Models
 
-Installation
-bash
+| Model            | Purpose                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------- |
+| **User**         | Stores user credentials and profile info.                                                |
+| **Profile**      | Extends User with avatar, nickname.                                                      |
+| **Task**         | Main task entity – title, description, due date, priority, status, lock, favourite, pin. |
+| **Category**     | Labels for grouping tasks (many‑to‑many with Task).                                      |
+| **Notification** | Unread notifications for users.                                                          |
+| **SharedTask**   | Tracks shared links, their tokens, expiry, and status.                                   |
+
+---
+
+## 📬 Main API Endpoints
+
+| Method    | Endpoint                             | Description                                      |
+| --------- | ------------------------------------ | ------------------------------------------------ |
+| POST      | `/api/register/`                     | Create a new user account.                       |
+| POST      | `/api/login/`                        | Obtain JWT access and refresh tokens.            |
+| POST      | `/api/token/refresh/`                | Refresh an expired access token.                 |
+| GET       | `/api/tasks/`                        | List all tasks for the authenticated user.       |
+| POST      | `/api/tasks/`                        | Create a new task.                               |
+| GET       | `/api/tasks/{id}/`                   | Retrieve a single task.                          |
+| PUT/PATCH | `/api/tasks/{id}/`                   | Update a task.                                   |
+| DELETE    | `/api/tasks/{id}/`                   | Delete a task.                                   |
+| POST      | `/api/tasks/{id}/lock/`              | Lock a task with a password.                     |
+| POST      | `/api/tasks/{id}/unlock/`            | Unlock a task.                                   |
+| POST      | `/api/tasks/{id}/toggle-favorite/`   | Toggle favourite status.                         |
+| POST      | `/api/tasks/{id}/toggle-pin/`        | Toggle pin status.                               |
+| POST      | `/api/tasks/{id}/duplicate/`         | Duplicate a task.                                |
+| GET       | `/api/notifications/`                | List unread notifications.                       |
+| PATCH     | `/api/notifications/{id}/mark-read/` | Mark a notification as read.                     |
+| POST      | `/api/notifications/mark-all-read/`  | Mark all notifications as read.                  |
+| GET       | `/api/categories/`                   | List user’s categories.                          |
+| POST      | `/api/categories/`                   | Create a new category.                           |
+| POST      | `/api/share/`                        | Generate a share link for a task.                |
+| GET       | `/api/share/{token}/`                | View a shared task (public).                     |
+| GET       | `/api/analytics/`                    | Get task statistics for charts.                  |
+| POST      | `/api/change-password/`              | Change user password.                            |
+| POST      | `/api/profile/delete-account/`       | Delete the user account.                         |
+| POST      | `/api/feedback/`                     | Submit user feedback (with optional screenshot). |
+
+For full interactive documentation, visit `/api/docs/` (Swagger UI) when the server is running.
+
+---
+
+## 🚀 Getting Started (For Developers)
+
+### Prerequisites
+
+- Python 3.10+
+- pip
+- Virtual environment (recommended)
+
+### Installation
+
+```bash
 # Clone the repository
 git clone https://github.com/Alexinthehub/task-management-api.git
 cd task-management-api
@@ -111,9 +123,10 @@ python manage.py createsuperuser
 python manage.py runserver
 The API will be available at http://127.0.0.1:8000/api/.
 
-Environment Variables
+Environment Variables (Optional)
 Create a .env file or set these in your shell:
 
+text
 SECRET_KEY=your-secret-key
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
@@ -121,7 +134,6 @@ DATABASE_URL=sqlite:///db.sqlite3
 EMAIL_HOST_USER=your-email@gmail.com
 EMAIL_HOST_PASSWORD=your-app-password
 FRONTEND_URL=http://localhost:5173
-
 📁 Project Structure (Simplified)
 text
 task_management_api/
@@ -134,7 +146,6 @@ task_management_api/
 ├── manage.py
 ├── requirements.txt
 └── README.md
-
 📧 Email Features
 The backend sends several types of emails:
 
@@ -173,14 +184,13 @@ Cron jobs for daily task reminders.
 
 Static and media files served correctly.
 
-
 📄 License
 MIT License – see the LICENSE file for details.
 
-## 📬 Contact
+📬 Contact
+Project Link: https://github.com/Alexinthehub/task-management-api
 
-- **Project Link**: [https://github.com/Alexinthehub/task-management-api](https://github.com/Alexinthehub/task-management-api)
-- **Live API**: [https://mwendwa.pythonanywhere.com/api/docs/](https://mwendwa.pythonanywhere.com/api/docs/)
+Live API: https://mwendwa.pythonanywhere.com/api/docs/
 
 Built with ❤️ by the TaskFlow Team
 ```
